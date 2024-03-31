@@ -124,7 +124,7 @@ static int32 TArray_Add(lua_State* L)
     int32 Index = Array->AddDefaulted();
     uint8* Data = Array->GetData(Index);
     Array->Inner->WriteValue_InContainer(L, Data, 2);
-    ++Index;
+    //++Index;
     lua_pushinteger(L, Index);
     return 1;
 }
@@ -145,7 +145,7 @@ static int32 TArray_AddUnique(lua_State* L)
     Array->Inner->WriteValue_InContainer(L, Array->ElementCache, 2);
     int32 Index = Array->AddUnique(Array->ElementCache);
     Array->Inner->Destruct(Array->ElementCache);
-    ++Index;
+    //++Index;
     lua_pushinteger(L, Index);
     return 1;
 }
@@ -166,7 +166,7 @@ static int32 TArray_Find(lua_State* L)
     Array->Inner->WriteValue_InContainer(L, Array->ElementCache, 2);
     int32 Index = Array->Find(Array->ElementCache);
     Array->Inner->Destruct(Array->ElementCache);
-    ++Index;
+    //++Index;
     lua_pushinteger(L, Index);
     return 1;
 }
@@ -186,7 +186,7 @@ static int32 TArray_Insert(lua_State* L)
     Array->Inner->Initialize(Array->ElementCache);
     Array->Inner->WriteValue_InContainer(L, Array->ElementCache, 2);
     int32 Index = lua_tointeger(L, 3);
-    --Index;
+    //--Index;
     Array->Insert(Array->ElementCache, Index);
     Array->Inner->Destruct(Array->ElementCache);
     return 0;
@@ -205,7 +205,7 @@ static int32 TArray_Remove(lua_State* L)
     TArray_Guard(L, Array);
 
     int32 Index = lua_tointeger(L, 2);
-    --Index;
+    //--Index;
     Array->Remove(Index);
     return 0;
 }
@@ -315,7 +315,7 @@ static int32 TArray_Get(lua_State* L)
     TArray_Guard(L, Array);
 
     int32 Index = lua_tointeger(L, 2);
-    --Index;
+    //--Index;
     if (!Array->IsValidIndex(Index))
     {
         UNLUA_LOGERROR(L, LogUnLua, Log, TEXT("%s: TArray Invalid Index!"), ANSI_TO_TCHAR(__FUNCTION__));
@@ -342,7 +342,7 @@ static int32 TArray_GetRef(lua_State* L)
     TArray_Guard(L, Array);
 
     int32 Index = lua_tointeger(L, 2);
-    --Index;
+    //--Index;
     if (!Array->IsValidIndex(Index))
     {
         UNLUA_LOGERROR(L, LogUnLua, Log, TEXT("%s: TArray Invalid Index!"), ANSI_TO_TCHAR(__FUNCTION__));
@@ -367,7 +367,7 @@ static int32 TArray_Set(lua_State* L)
     TArray_Guard(L, Array);
 
     int32 Index = lua_tointeger(L, 2);
-    --Index;
+    //--Index;
     if (!Array->IsValidIndex(Index))
     {
         UNLUA_LOGERROR(L, LogUnLua, Log, TEXT("%s: TArray Invalid Index!"), ANSI_TO_TCHAR(__FUNCTION__));
@@ -447,7 +447,7 @@ static int32 TArray_IsValidIndex(lua_State* L)
     TArray_Guard(L, Array);
 
     int32 Index = lua_tointeger(L, 2);
-    --Index;
+    //--Index;
     bool bValid = Array->IsValidIndex(Index);
     lua_pushboolean(L, bValid);
     return 1;
